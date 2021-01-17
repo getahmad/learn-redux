@@ -1,32 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import Counter from "../components/Counter";
 
-export default function Product() {
-  const [order, setOrder] = useState(0);
-
-  const counterPlus = () => setOrder(order + 1);
-  const counterMinus = () => {
-    if (order <= 0) {
-      setOrder(0);
-    } else {
-      setOrder(order - 1);
-    }
-  };
-
+const Product = (props) => {
   return (
     <>
+      <h1>Buy Product</h1>
       <div style={{ textAlign: "center" }}>
-        <h1>Buy Product</h1>
-        <p>Rp. 50.000</p>
-        <p>Order: {order}</p>
-        <h3>Total:{order * 50000}</h3>
+        <p>Rp. {props.price}</p>
+        <p>Order :{props.order}</p>
+        <h3>Total:{props.order * props.price}</h3>
         <br />
-        <Counter
-          orderValue={order}
-          counterPlusFunction={counterPlus}
-          counterMinusFunction={counterMinus}
-        />
+        <Counter />
       </div>
     </>
   );
-}
+};
+
+const mapStateToProps = (globalState) => {
+  return {
+    order: globalState.order,
+    price: globalState.price,
+  };
+};
+export default connect(mapStateToProps)(Product);
