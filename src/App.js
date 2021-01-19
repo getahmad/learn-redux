@@ -1,13 +1,10 @@
 import React from "react";
-import Checkout from "./pages/Checkout.js";
-import Product from "./pages/Product";
+import MovieSearch from "./pages/MovieSearch.js";
 
 export default function App() {
   return (
     <div>
-      <Product />
-      <hr />
-      <Checkout />
+      <MovieSearch />
     </div>
   );
 }
