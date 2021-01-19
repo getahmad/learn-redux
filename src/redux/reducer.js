@@ -15,13 +15,27 @@ const rootReducer = (state = globalState, action) => {
     };
   }
 
-  if (action.type === actionType.MINUS_ORDER) {
+  if (state.order <= 0) {
     return {
       ...state,
-      order: state.order - 1,
+      order: (state.order = 0),
     };
+  } else {
+    if (action.type === actionType.MINUS_ORDER) {
+      return {
+        ...state,
+        order: state.order - 1,
+      };
+    }
   }
-  return state;
+
+  // if (action.type === actionType.MINUS_ORDER) {
+  //   return {
+  //     ...state,
+  //     order: state.order - 1,
+  //   };
+  // }
+  // return state;
 };
 
 export default rootReducer;
